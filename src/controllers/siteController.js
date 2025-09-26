@@ -1,13 +1,13 @@
 const siteService = require('../services/siteService');
 
-// Retorna lista de sites
-exports.getSites = (req, res) => {
-  const sites = siteService.getAllSites();
-  res.json(sites);
+// Retorna status dos sites
+exports.getStatus = (req, res) => {
+  const results = siteService.getLastResults();
+  res.json(results);
 };
 
-// Retorna status atualizado
-exports.getStatus = (req, res) => {
-  const status = siteService.getLastResults();
-  res.json(status);
+// Opcional: rota para listar todos os sites
+exports.getAllSites = (req, res) => {
+  const sites = siteService.getAllSites();
+  res.json(sites);
 };

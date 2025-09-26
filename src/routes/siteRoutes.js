@@ -1,11 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const siteController = require('../controllers/siteController');
+const siteController = require('../controllers/siteController.js');
 
-// Retorna lista de sites
-router.get('/sites', siteController.getSites);
+// Rota inicial
+router.get("/", (req, res) => res.send("✅ Uptime Monitor rodando com cron no Render!"));
 
-// Retorna status atualizado
-router.get('/status', siteController.getStatus);
+// Rota para listar sites
+router.get("/sites", siteController.getAllSites);
+
+// Rota para retornar status
+router.get("/status", siteController.getStatus);
 
 module.exports = router;
