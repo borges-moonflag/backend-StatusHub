@@ -1,23 +1,46 @@
-const cron = require('node-cron');
-const siteService = require('../services/siteService');
+const cron = require("node-cron");
+const siteService = require("../services/siteService");
+const axios = require("axios");
 
 const INTERVAL = process.env.CHECK_INTERVAL || 5;
 
+// Função que checa todos os sites
 async function runChecks() {
-  console.log(`[${new Date().toISOString()}] Rodando o verificador de sites...`);
-  const results = await siteService.runChecks();
+  const sites = await siteService.getAllSites();
+  const now = new Date().toISOString();
+  console.log(`\n[${now}] 🔄 Rodando verificador de sites...`);
 
-  // Loga o status de cada site no console
-  results.forEach(site => {
-    console.log(`${site.name} [${site.url}] → ${site.status} (${site.responseTime}ms)`);
-  });
+  for (const site of sites) {
+    try {
+      const start = Date.now();
+      await axios.get(site.url, { timeout: 10000 });
+      const responseTime = Date.now() - start;
+      await siteService.updateSiteStatus({
+        id: site.id,
+        status: "UP",
+        response_time: responseTime,
+        last_checked: now
+      });
+      console.log(`${site.name} [${site.url}] → UP (${responseTime}ms)`);
+    } catch (error) {
+      await siteService.updateSiteStatus({
+        id: site.id,
+        status: "DOWN",
+        response_time: null,
+        last_checked: now
+      });
+      console.log(`${site.name} [${site.url}] → DOWN`);
+    }
+  }
+
+  console.log("✔ Checagem finalizada\n");
 }
 
 exports.start = () => {
-  // 🔹 roda imediatamente ao iniciar
+  // Roda imediatamente ao iniciar
   runChecks();
 
-  // 🔹 roda de acordo com o intervalo definido
+  // Roda de acordo com o intervalo
   cron.schedule(`*/${INTERVAL} * * * *`, runChecks);
 
   console.log(`Scheduler iniciado: checando a cada ${INTERVAL} minuto(s)`);
