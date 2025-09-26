@@ -1,0 +1,52 @@
+[
+  {
+    "id": "google",
+    "name": "Google",
+    "url": "https://www.google.com",
+    "status": "UP",
+    "statusCode": 200,
+    "responseTime": 120,
+    "checkedAt": "2025-09-25T22:30:00Z",
+    "notify": true
+  },
+  {
+    "id": "github",
+    "name": "GitHub",
+    "url": "https://www.github.com",
+    "status": "UP",
+    "statusCode": 200,
+    "responseTime": 150,
+    "checkedAt": "2025-09-25T22:30:00Z",
+    "notify": true
+  },
+  {
+    "id": "stackoverflow",
+    "name": "StackOverflow",
+    "url": "https://stackoverflow.com",
+    "status": "UP",
+    "statusCode": 200,
+    "responseTime": 200,
+    "checkedAt": "2025-09-25T22:30:00Z",
+    "notify": true
+  },
+  {
+    "id": "npm",
+    "name": "NPM",
+    "url": "https://www.npmjs.com",
+    "status": "UP",
+    "statusCode": 200,
+    "responseTime": 180,
+    "checkedAt": "2025-09-25T22:30:00Z",
+    "notify": true
+  },
+  {
+    "id": "nodejs",
+    "name": "Node.js",
+    "url": "https://nodejs.org",
+    "status": "UP",
+    "statusCode": 200,
+    "responseTime": 160,
+    "checkedAt": "2025-09-25T22:30:00Z",
+    "notify": true
+  }
+]
