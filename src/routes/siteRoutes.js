@@ -6,9 +6,15 @@ const siteController = require('../controllers/siteController.js');
 router.get("/", (req, res) => res.send("✅ Uptime Monitor rodando com cron no Render!"));
 
 // Rota para listar sites
-router.get("/sites", siteController.getAllSites);
+router.get("/api/sites", siteController.getAllSites);
 
 // Rota para retornar status
-router.get("/status", siteController.getStatus);
+router.get("/api/status", siteController.getStatus);
+
+// 🔹 Rota de metrics
+router.get("/api/metrics", siteController.getMetrics);
+
+// 🔹 Rota de health
+router.get("/api/health", siteController.getHealth);
 
 module.exports = router;
