@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const scheduler = require("./jobs/scheduler.js");
 const siteRoutes = require("./routes/siteRoutes.js")
+const authRoutes = require("./routes/authRoutes");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -11,6 +12,7 @@ app.use(express.json());
 
 // Rotas
 app.use("/", siteRoutes);
+app.use(authRoutes);
 
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
