@@ -10,6 +10,16 @@ exports.createUser = async ({ name, email, password }) => {
   return { id: result.insertId, name, email };
 };
 
+exports.findAllUsers = async () => {
+  try {
+    const [rows] = await db.query("SELECT id, name, email FROM users");
+    return rows;
+  } catch (error) {
+    console.error("Erro ao buscar a lista de usuários:", error);
+    return [];
+  }
+};
+
 exports.findByEmail = async (email) => {
   const [rows] = await db.query("SELECT * FROM users WHERE email = ?", [email]);
   return rows[0];
