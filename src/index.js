@@ -21,7 +21,6 @@ app.use(express.json());
 
 // Rotas
 app.use("/api", siteRoutes);
-// app.use("/api/auth", authRoutes);
 
 
 app.listen(PORT, () => {

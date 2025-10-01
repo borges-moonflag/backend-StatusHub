@@ -17,7 +17,7 @@ router.get("/users", userController.getAllUsers)
 router.get("/users/:email", userController.getUserByMail);
 router.post("/users/register", userController.register);
 
-router.get("/me", authMiddleware, (req, res) => {res.json({ user: req.user });});
+router.get("/auth/me", authMiddleware, (req, res) => {res.json({ user: req.user });});
 router.post("/auth/login", authController.login);
 
 router.get("/status", siteController.getStatus);
