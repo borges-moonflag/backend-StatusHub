@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3000;
 
 const allowedOrigins = [
   "http://localhost:3000",
-  "https://frontend-status-hub.vercel.app" 
+  "https://devtools.desenvolvimentomoonflag.com.br" 
 ];
 
 app.use(cors({
