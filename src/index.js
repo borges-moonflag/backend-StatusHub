@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 const scheduler = require("./jobs/scheduler.js");
 const siteRoutes = require("./routes/siteRoutes.js")
 
@@ -24,6 +25,7 @@ app.use(cors({
 }));
 
 app.use(express.json());
+app.use(cookieParser());
 
 // Rotas
 app.use("/api", siteRoutes);
