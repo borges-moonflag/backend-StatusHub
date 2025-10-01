@@ -19,6 +19,9 @@ router.post("/users/register", userController.register);
 
 router.get("/auth/me", authMiddleware, (req, res) => {res.json({ user: req.user });});
 router.post("/auth/login", authController.login);
+router.post("/auth/logout", (req, res) => {  res.clearCookie("token", { path: "/" });
+  res.json({ message: "Logout realizado com sucesso" });
+});
 
 router.get("/status", siteController.getStatus);
 router.get("/metrics", siteController.getMetrics);
