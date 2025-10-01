@@ -8,14 +8,15 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 const allowedOrigins = [
-  "http://localhost:3000",                // desenvolvimento local
-  "https://frontend-status-hub.vercel.app" // produção vercel
+  "http://localhost:3000",
+  "https://frontend-status-hub.vercel.app" 
 ];
 
 app.use(cors({
   origin: allowedOrigins,
   credentials: true,
 }));
+
 app.use(express.json());
 
 // Rotas
