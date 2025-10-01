@@ -6,6 +6,11 @@ const authController = require("../controllers/authController");
 const authMiddleware = require("../middleware/authMiddleware");
 
 // CRUD Sites
+router.get("/api/test", (req, res) => {
+  res.json({ message: "Rewrite funcionando!" });
+});
+
+
 router.get("/", (req, res) => res.send("✅ Uptime Monitor rodando com cron no Render!"));
 router.get("/sites", siteController.getAllSites);
 router.get("/sites/:id", siteController.getSiteById);
