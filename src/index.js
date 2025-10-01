@@ -7,7 +7,15 @@ const authRoutes = require("./routes/authRoutes.js");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(cors());
+const allowedOrigins = [
+  "http://localhost:3000",                // desenvolvimento local
+  "https://frontend-status-hub.vercel.app" // produção vercel
+];
+
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true,
+}));
 app.use(express.json());
 
 // Rotas
