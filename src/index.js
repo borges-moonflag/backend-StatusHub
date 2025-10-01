@@ -13,8 +13,14 @@ const allowedOrigins = [
 ];
 
 app.use(cors({
-  origin: allowedOrigins,
-  credentials: true,
+  origin: function(origin, callback){
+    if(!origin) return callback(null, true); // permite Postman / curl
+    if(allowedOrigins.indexOf(origin) === -1){
+      return callback(new Error('CORS não permitido'), false);
+    }
+    return callback(null, true);
+  },
+  credentials: true
 }));
 
 app.use(express.json());
